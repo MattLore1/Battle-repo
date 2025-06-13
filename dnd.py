@@ -58,6 +58,30 @@ def roll_d20():
 def roll_d10():
     return random.randint(1, 10)
 
+# Super cool intro cinamatics and palyer name 
+print("PLACE HOLDER -- something cool setting up a story -- ending with a charecter selection")
+player_name = input("Enter your hero's name: ")
+
+# Rejects boring ahh titles
+generic_titles = {
+    "The Bold", "The Brave", "The Cunning", "The Fierce", "The Great",
+    "The Just", "The Mighty", "The Swift", "The Valiant", "The Wise", "The Kind"
+}
+
+# Ask for title until it's not too generic
+print(f"Greetings {player_name}, as every great adventurer before you has figured out; "
+        f"the only difference between a hero and an NPC is a powerful sounding title.\n")
+while True:
+    player_title = input(
+        f"So {player_name}, what shall your title be? "
+    ).title()
+
+    if player_title in generic_titles:
+        print("Boring, do better!\n")
+    else:
+        print(f"Ahh... '{player_name} {player_title}' now **that** sounds like the name of a true legend!")
+        break
+
 # order of stats for easy reference (armor_class, health, dodge_chance, Crit_chance)
 enemies = [
     Mortal("Goblin Archer 1", 12, 12, 3, 0),
@@ -76,8 +100,27 @@ players = [
     Mortal("Rogue", 13, 25, 40, 0),
     Mortal("Cleric", 13, 25, 1, 0),
     Mortal("Fighter", 16, 25, 25, 0),
-    Mortal("Bard", 13, 25, 0, 15)
+    Mortal("Bard", 13, 25, 15, 0)
 ]
+
+# Show available classes once at the start
+print("\nAvailable classes:")
+for cls in players:
+    print(f"- {cls.name}")
+
+# Ask player to choose a class by name
+while True:
+    chosen_class_name = input(
+        f"\nSo, {player_name} {player_title}, what class are you? "
+    ).strip().title()
+
+    chosen_class = next((cls for cls in players if cls.name == chosen_class_name), None)
+
+    if chosen_class:
+        break
+    else:
+        print("That's not one of the available classes. Try again!")
+        print("Available classes:", ', '.join(cls.name for cls in players))  
 
 #function to see who wins
 while len(enemies) > 0 and len(players) > 0:

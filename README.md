@@ -2,7 +2,7 @@
 dnd battles are done here
 
 TODO:
-- [ ] Allow for class selection and naming 
+- [x] Allow for class selection and naming 
 - [ ] Add initiative/turn order
 - [ ] Action menu for players (a la pokemon)
 - [ ] status effects
